@@ -59,3 +59,24 @@ t.goto(first_pixel)
 t.up()
 t.goto([0, 0])
 t.write(state[NAME], align="center", font=("Arial", 16, "bold"))
+
+for city in cities:
+    pixel = convert(city[POINTS])
+    t.up()
+    t.goto(pixel)
+    # Place a point for the city
+    t.dot(10)
+    # Label the city
+    t.write(city[NAME] + ", Pop.: " + str(city[POP]), align="left")
+    t.up()
+
+biggest_city = max(cities, key=lambda city: city[POP])
+t.goto(0, -200)
+t.write("The biggest city is: " + biggest_city[NAME])
+
+western_city = min(cities, key=lambda city: city[POINTS])
+t.goto(0, -220)
+t.write("The western-most city is: " + western_city[NAME])
+
+t.pen(shown=False)
+t.done()
