@@ -45,3 +45,17 @@ def convert(point):
     x = x - (map_width / 2)
     y = y - (map_height / 2)
     return [x, y]
+
+
+t.up()
+first_pixel = None
+for point in state[POINTS]:
+    pixel = convert(point)
+    if not first_pixel:
+        first_pixel = pixel
+    t.goto(pixel)
+    t.down()
+t.goto(first_pixel)
+t.up()
+t.goto([0, 0])
+t.write(state[NAME], align="center", font=("Arial", 16, "bold"))
